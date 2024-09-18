@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, ScrollView, Image } from "react-native";
+import { StyleSheet, Text, View, ScrollView, Image, Alert } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { images } from "../../constants";
@@ -18,24 +18,26 @@ const SignIn = () => {
   const [isSubmitting, setSubmitting] = useState(false);
 
   const submit = async () => {
-    if( !form.email || !form.password){
-      Alert.alert('Error, "Please fill in all fields')
+    if (form.email === "" || form.password === "") {
+      Alert.alert("Error", "Please fill in all fields");
     }
 
     setSubmitting(true);
 
     try {
-      await signIn(form.email, form.password, form.username)
+      await signIn(form.email, form.password);
+      const result = await getCurrentUser();
+      setUser(result);
+      setIsLogged(true);
 
-      //set it to global state
-      router.replace('/home');
+      Alert.alert("Success", "User signed in successfully");
+      router.replace("/home");
     } catch (error) {
-      Alert.alert('Error', error.message)
-    }finally{
+      Alert.alert("Error", error.message);
+    } finally {
       setSubmitting(false);
     }
   };
-
   return (
     <SafeAreaView className="bg-primary h-full">
       <ScrollView>
