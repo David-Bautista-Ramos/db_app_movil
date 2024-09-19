@@ -11,7 +11,7 @@ import { isLoaded, isLoading } from "expo-font";
 const Welcome = () => {
   const { loading, isLogged } = useGlobalContext();
 
-  if(!isLoading && isLogged) return <Redirect href="/home"/>;
+  if(!isLoading && isLogged) return <Redirect href="/home"/>
 
   return (
     <SafeAreaView className="bg-primary h-full">

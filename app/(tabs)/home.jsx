@@ -18,7 +18,7 @@ const Home = () => {
     await refetch();
     setRefreshing(false);
   };
-
+ 
   return (
     <SafeAreaView className="bg-primary">
       <FlatList
@@ -47,7 +47,7 @@ const Home = () => {
 
               <View className="mt-1.5">
                 <Image
-                  source={images.logoSmall}
+                  source={images.logoSmall }
                   className="w-9 h-10"
                   resizeMode="contain"
                 />
